@@ -1,16 +1,16 @@
 
 
-public class IntegerSet {
+public class DoubleSet {
 
-	private int[] elements;
+	private double[] elements;
 	private int numElements;
 
-	public IntegerSet(int maxElements) {
-		elements = new int[maxElements];
+	public DoubleSet(int maxElements) {
+		elements = new double[maxElements];
 		numElements = 0;
 	}
-	public IntegerSet(int[] numbers) {
-		elements = new int[numbers.length * 2];
+	public DoubleSet(double[] numbers) {
+		elements = new double[numbers.length * 2];
 		for (int i=0; i<numbers.length; i++) {
 			elements[i] = numbers[i];
 		}
@@ -18,7 +18,7 @@ public class IntegerSet {
 
 	}
 
-	public boolean isMember(int key) {
+	public boolean isMember(double key) {
 		for(int i=0; i<numElements; i++) {
 			if (key == elements[i])
 				return true;
@@ -26,13 +26,13 @@ public class IntegerSet {
 		return false;
 	}
 
-	public int[] getElements() {
+	public double[] getElements() {
 		return elements;
 	}
 	public int getNumElements() {
 		return numElements;
 	}
-	public void setElements(int[] elements) {
+	public void setElements(double[] elements) {
 		this.elements = elements;
 	}
 	public void setNumElements(int numElements) {
@@ -43,8 +43,8 @@ public class IntegerSet {
 		return numElements;
 	}
 
-	public int getSum() {
-		int sum = 0;
+	public double getSum() {
+		double sum = 0;
 		for(int i=0; i<numElements; i++) {
 			sum = sum + elements[i];	
 		}
@@ -60,18 +60,18 @@ public class IntegerSet {
 		return true;
 	}
 
-	public IntegerSet mapSquares() {
-		int[] squares = new int[numElements];
+	public DoubleSet mapSquares() {
+		double[] squares = new double[numElements];
 		for(int i=0; i<numElements; i++) {
 			squares[i] = elements[i] * elements[i];
 		}
-		return new IntegerSet(squares);
+		return new DoubleSet(squares);
 	}
 
-	public void add(int newElement) {
+	public void add(double newElement) {
 		if (numElements >= elements.length) {
 			// Make new array to increase space
-			int[] newElements = new int[elements.length * 2];
+			double[] newElements = new double[elements.length * 2];
 			for (int i=0; i<numElements; i++) {
 				newElements[i] = elements[i];
 			}
@@ -81,8 +81,8 @@ public class IntegerSet {
 		numElements++;
 	}
 
-	public IntegerSet intersection(IntegerSet s2) {
-		IntegerSet result = new IntegerSet(Math.min(this.getCardinality(), s2.getCardinality()));
+	public DoubleSet intersection(DoubleSet s2) {
+		DoubleSet result = new DoubleSet(Math.min(this.getCardinality(), s2.getCardinality()));
 
 		for(int i=0; i<this.getCardinality(); i++) {
 			if (s2.isMember(elements[i])) {
@@ -92,8 +92,8 @@ public class IntegerSet {
 		return result;
 	}
 	
-	public IntegerSet union(IntegerSet s2) {
-		IntegerSet result = new IntegerSet(this.getCardinality() + s2.getCardinality());
+	public DoubleSet union(DoubleSet s2) {
+		DoubleSet result = new DoubleSet(this.getCardinality() + s2.getCardinality());
 		
 		for(int i=0; i<getCardinality(); i++) {
 			result.add(elements[i]);
